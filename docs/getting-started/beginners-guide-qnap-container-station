@@ -61,3 +61,9 @@ If you didn't optionally share the timezone from the NAS add a environment varia
 
 Finalize by clicking _Apply_, _Next_ and _Finish_ 
 
+## To Update
+1. In Container Station und Containers click the gear icon of the Lyrion Media Server container
+2. Select _Recreate Directly and make sure to check the _Try pulling the image..._ 
+
+
+
