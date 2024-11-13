@@ -23,7 +23,7 @@ In this guide the following assumptions apply:
 - You have nothing else running at port 9000 on your NAS.
 
 ## Preperations
-Create a new folder (with _File Station_) under `ContainerCOnfigs` called `lmsconf`
+Create a new folder (with _File Station_) under `ContainerConfigs` called `lmsconf`
 
 ## Preperation [Optional] 
 In order to sync the timezone with the NAS access to /etc/TZ is needed. This folder is not accessible by containers so create a symlink in a location that is.
@@ -42,9 +42,22 @@ We will use this symlink to map the containers `/etc/timzone` to make both media
 6. By networks select Custom and Host
 7. Under storage delete the locations of `/config`, `/music`, and `/playlist`
 8. [Optional] Select Bind Mount Host Path, navigate to `Container\timezone`, at Container enter `\etc\timezone` and make it RO
-9. Select _Bind Mount Host Path_, at Host select the location of your music files at Container type `/music`
-10. Repeat the same steps for your playlist connect to `\playlist`
-11. Repeat for `/ContainerConfigs` and `/config/`
+9. Select _Bind Mount Host Path_, at Host select the location of your music files at Container type `/music` make it RO
+10. Repeat the same steps for your playlist connect to `\playlist` make it RW
+11. Repeat for `/ContainerConfigs` and `/config/` make it RW
 
 In the end it might look something like
+
+Host|Container
+--|--|--
+`/ContainerConfigs/lmsconf`|`/config`
+`/Container/timezone`|`/etc/timezone`
+`/Multimedia/music`|`/music`
+`/Multimedia/playlist`|`/playlist`
+
+If you didn't optionally share the timezone from the NAS add a environment variable `TZ`
+1. Select _Environments_
+2. Add a new variable named `TZ` and set it to `Europe/Zurich` or whatever [timezone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) you dwell in.
+
+Finalize by clicking _Apply_, _Next_ and _Finish_ 
 
